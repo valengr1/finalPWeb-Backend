@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bookRoutesV1 = require("./v1/routes/bookRoutes");
+const userRoutesV1 = require("./v1/routes/userRoutes");
 const mysql = require("mysql");
 const myConnection = require("express-myconnection");
 require("dotenv").config();
@@ -21,7 +22,8 @@ const dbConfig = {
 app.use(cors());
 app.use(express.json());
 app.use(myConnection(mysql, dbConfig, "single"));
-app.use("/api/v1", bookRoutesV1);
+app.use("/api/v1/books", bookRoutesV1);
+app.use("/api/v1/users", userRoutesV1);
 
 //server running
 app.listen(app.get("port"), () => {

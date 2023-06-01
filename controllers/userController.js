@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const getAllUsers = async (req, res) => {
-  await req.getConnection((err, conn) => {
+    await req.getConnection((err, conn) => {
     if (err) return res.send(err);
     conn.query("select * from users", (err, rows) => {
       if (err) return res.send(err);
