@@ -4,6 +4,7 @@ const bookController = require("./../../controllers/bookController");
 
 routes
   .get("/", bookController.getAllBooks)
+  .get("/:titulo",bookController.getABookByTitulo)
   .post("/", bookController.addANewBook)
   .get("/:id", bookController.getABookById)
   .delete("/:id", bookController.deleteABookById)

@@ -1,7 +1,7 @@
 getAllBooks = (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err);
-    conn.query("select * from books", (err, rows) => {
+    conn.query("select b.id,b.titulo,b.edicion,b.autor,c.descripcion as categoria from books as b inner join categories as c on b.idCategoria = c.id", (err, rows) => {
       if (err) return res.send(err);
       res.json(rows);
     });
@@ -12,7 +12,7 @@ getABookById = (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err);
     conn.query(
-      "select * from books where id = ?",
+      "select b.id,b.titulo,b.edicion,b.autor,c.descripcion as categoria from books as b inner join categories as c on b.idCategoria = c.id where b.id = ?",
       [req.params.id],
       (err, rows) => {
         if (err) return res.send(err);
@@ -21,6 +21,16 @@ getABookById = (req, res) => {
     );
   });
 };
+
+getABookByTitulo = (req,res)=>{
+  req.getConnection((err,conn)=>{
+    if(err) return res.send(err)
+    conn.query("select b.id,b.titulo,b.edicion,b.autor,c.descripcion as categoria from books as b inner join categories as c on b.idCategoria = c.id where b.titulo = ?",[req.params.titulo],(err,rows)=>{
+      if(err) return res.send(err)
+      res.json(rows)
+    });
+  });
+}
 
 addANewBook = (req, res) => {
   req.getConnection((err, conn) => {
@@ -58,6 +68,7 @@ updateABookById = (req, res) => {
 
 module.exports = {
   getAllBooks,
+  getABookByTitulo,
   addANewBook,
   getABookById,
   deleteABookById,
