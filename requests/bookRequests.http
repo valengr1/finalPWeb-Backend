@@ -1,8 +1,10 @@
 ###
 GET http://localhost:9000/api/v1/books HTTP/1.1
+//obtener todos los libros
 
 ###
-GET http://localhost:9000/api/v1/books/Antologia Poetica HTTP/1.1
+GET http://localhost:9000/api/v1/books/63 HTTP/1.1
+
 
 ###
 POST http://localhost:9000/api/v1/books HTTP/1.1
@@ -13,8 +15,6 @@ Content-Type: application/json
     "edicion":"5"
 }
 
-###
-GET http://localhost:9000/api/v1/2 HTTP/1.1
 
 ###
 DELETE http://localhost:9000/api/v1/books/48 HTTP/1.1
