@@ -3,26 +3,32 @@ GET http://localhost:9000/api/v1/books HTTP/1.1
 //obtener todos los libros
 
 ###
-GET http://localhost:9000/api/v1/books/63 HTTP/1.1
-
+GET http://localhost:9000/api/v1/books/123 HTTP/1.1
+//obtener un libro por su id
 
 ###
 POST http://localhost:9000/api/v1/books HTTP/1.1
+//agregar un libro
 Content-Type: application/json
 
 {
-    "titulo":"Sin miedo",
-    "edicion":"5"
+    "titulo":"Titulo",
+    "edicion":2,
+    "autor": "Autor",
+    "idCategoria": 1
 }
+//Categorias. 1:Ciencia Ficcion - 2:Biografia - 3:Novela - 4:Autoayuda - 5:Poesia - 6:Infantiles - 7:Terror
 
 
 ###
-DELETE http://localhost:9000/api/v1/books/48 HTTP/1.1
+DELETE http://localhost:9000/api/v1/books/123 HTTP/1.1
+//Eliminar un libro por su id
 
 ###
 PUT http://localhost:9000/api/v1/1 HTTP/1.1
+//Modificar un libro por su id + datos
 Content-Type: application/json
 
 {
-    "titulo": "Valen Loco"
+    "titulo": "Nuevo titulo"
 }

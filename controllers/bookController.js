@@ -11,20 +11,6 @@ getAllBooks = (req, res) => {
   });
 };
 
-getABookById = (req, res) => {
-  req.getConnection((err, conn) => {
-    if (err) return res.send(err);
-    conn.query(
-      "select b.id,b.titulo,b.edicion,b.autor,c.nombre as categoria from books as b inner join categories as c on b.idCategoria = c.id where b.id = ?",
-      [req.params.id],
-      (err, rows) => {
-        if (err) return res.send(err);
-        res.json(rows);
-      }
-    );
-  });
-};
-
 addANewBook = (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err);
@@ -62,7 +48,6 @@ updateABookById = (req, res) => {
 module.exports = {
   getAllBooks,
   addANewBook,
-  getABookById,
   deleteABookById,
   updateABookById,
 };
